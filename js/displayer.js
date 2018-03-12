@@ -1,4 +1,4 @@
-var currentPage = parseInt(localStorage.getItem("idPage"));
+var currentPage = 0;
 
 loadApartments().then(hotels => {
     showApartment(hotels);
@@ -49,13 +49,11 @@ function nextPage () {
 }
 
 function goPage(event, idPage) {
-    event.preventDefault();
     currentPage=idPage;
     saveActualPage();
 }
 
 function saveActualPage() {
-    localStorage.setItem('idPage', currentPage);
     cleanPage();
     loadApartments().then(hotels => {
         showApartment(hotels);
