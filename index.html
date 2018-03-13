@@ -35,7 +35,20 @@
         </div>
     </nav>
     <main>
-        <aside></aside>
+        <aside>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck1" onclick="checkBoxReviews()" >
+                <label class="form-check-label" for="defaultCheck1">
+                    Mejor valorados
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="checkbox" value="" id="defaultCheck2"  onclick="checkBoxComments()">
+                <label class="form-check-label" for="defaultCheck2">
+                    Mayor número de comentarios
+                </label>
+            </div>
+        </aside>
 
         <section class="container">
             <div class="row" id="apartaments"></div>
@@ -49,6 +62,7 @@
     <script src="js/loader.js"></script>
     <script src="js/displayer.js"></script>
     <script src="js/events.js"></script>
+    <script src="js/filters.js"></script>
 </body>
 
 </html>

@@ -1,7 +1,7 @@
 function searchHotel() {
     var name = $("#nameSearch").val();
     loadApartments().then(hotels => {
-        apartamentsAll = hotels.filter(hotels => hotels["Hotel Image"].alt.toLowerCase() === name.toLowerCase());
+        apartamentsAll = hotels.filter(hotels => hotels["Hotel Image"].alt.toLowerCase().includes(name.toLowerCase()));
         if (apartamentsAll.length != 0) {
             lastPage = Math.trunc((apartamentsAll.length / 15) - 1);
             cleanPage();
@@ -9,9 +9,10 @@ function searchHotel() {
             showApartment(apartamentsAll);
             choosePage();
         } else {
-            lastPage = Math.trunc((hotels.length / 15) - 1);
+           // lastPage = Math.trunc((hotels.length / 15) - 1);
+            lastPage = 0;
             cleanPage();
-            apartamentsAll = hotels;
+           // apartamentsAll = hotels;
             showApartment(apartamentsAll);
             choosePage();
         }
