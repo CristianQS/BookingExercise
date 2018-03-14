@@ -1,16 +1,17 @@
+var apartamentsFilter = [];
+
 function searchHotel() {
     var name = $("#nameSearch").val();
-    loadApartments().then(hotels => {
-        apartamentsAll = hotels.filter(hotels => hotels["Hotel Image"].alt.toLowerCase().includes(name.toLowerCase()));
-        if (apartamentsAll.length != 0) {
-            currentPage = 0;
-            cleanPage();
-            createPage(apartamentsAll,Math.trunc((apartamentsAll.length / numApartmentsPage) - 1));
-        } else {
-            cleanPage();
-            createPage(apartamentsAll,0);
-        }
-    })
+    if(apartamentsFilter.length === 0) apartamentsFilter = apartamentsAll.slice();
+    apartamentsFilter = apartamentsFilter.filter(hotels => hotels["Hotel Image"].alt.toLowerCase().includes(name.toLowerCase()));
+    if (apartamentsFilter.length != 0) {
+        currentPage = 0;
+        cleanPage();
+        createPage(apartamentsFilter, Math.trunc((apartamentsFilter.length / numApartmentsPage) - 1));
+    } else {
+        cleanPage();
+        createPage(apartamentsAll, 0);
+    }
 }
 
 function cleanPage() {
@@ -39,6 +40,8 @@ function goPage(idPage) {
 
 function saveActualPage() {
     cleanPage();
-    createPage(apartamentsAll,Math.trunc((apartamentsAll.length / numApartmentsPage) - 1));
+    console.log(currentPage);
+    if(apartamentsFilter.length === 0) apartamentsFilter = apartamentsAll.slice();
+    createPage(apartamentsFilter, Math.trunc((apartamentsFilter.length / numApartmentsPage) - 1));
 }
 

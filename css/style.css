@@ -1,0 +1,23 @@
+.grid {
+    display: grid;
+    grid-template-columns: 300px 1fr 1fr 1fr;
+}
+
+.grid aside {
+    background-color: #333;
+    color: white;
+    grid-column: 1/2;
+}
+section {
+    grid-column: 2/5;
+}
+
+#pages {
+    grid-column: 3/4;
+}
+
+.form-check {
+    margin-left: 20px;
+    margin-top: 10px;
+}
+

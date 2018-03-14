@@ -10,7 +10,7 @@ function loadApartments() {
 }
 
 function filterJSON() {
-    apartamentsAll = _.uniqBy(apartamentsAll, hotel => hotel["Hotel Image"].alt);
+    apartamentsAll = noRepeat(apartamentsAll);
     addFalseReviewApartment();
     changeComaForPoint();
 }
@@ -27,7 +27,11 @@ function addFalseReviewApartment() {
 function changeComaForPoint() {
     for (let i = 0; i < apartamentsAll.length; i++) {
         if (apartamentsAll[i]["Reviews Core 3"]) {
-            apartamentsAll[i]["Reviews Core 3"].text = apartamentsAll[i]["Reviews Core 3"].text.replace(',', '') ;
+            apartamentsAll[i]["Reviews Core 3"].text = apartamentsAll[i]["Reviews Core 3"].text.replace(',', '.');
         }
     }
+}
+
+function noRepeat(apartaments) {
+    return _.uniqBy(apartamentsAll, hotel => hotel["Hotel Image"].alt);
 }

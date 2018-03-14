@@ -1,4 +1,3 @@
-var apartamentsFilter = [];
 
 function check(query) {
     return $(query).prop("checked");
@@ -44,9 +43,10 @@ function checkBoxTopReviews() {
     if (check("#defaultCheck3")) {
         removeChecks();
         bestReviews();
-        showFilterPage(apartamentsFilter.slice(0, 10), 0);
+        apartamentsFilter=apartamentsFilter.slice(0, 10);
+        showFilterPage(apartamentsFilter, 0);
     } else {
-        showFilterPage(apartamentsFilter, (Math.trunc(apartaments.length / numApartmentsPage) - 1));
+        showFilterPage(apartamentsAll, (Math.trunc(apartamentsAll.length / numApartmentsPage) - 1));
     }
 }
 

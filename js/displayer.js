@@ -2,6 +2,7 @@ var currentPage = 0;
 var previousPage = 0;
 var lastPage = 0;
 
+
 loadApartments().then(hotels => {
     createPage(hotels, Math.trunc((hotels.length / numApartmentsPage) - 1));
 });
