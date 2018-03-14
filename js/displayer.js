@@ -1,7 +1,8 @@
-var currentPage = 1;
+var currentPage = 0;
 var previousPage = 0;
 var lastPage = 0;
 var apartamentsAll = [];
+
 loadApartments().then(hotels => {
     previousPage = 0;
     lastPage = Math.trunc((hotels.length / 15) - 1);
@@ -34,12 +35,10 @@ function createApartmentHtml(apartament) {
 }
 
 function choosePage() {
-    console.log(previousPage);
-    console.log(lastPage);
     createPagination(currentPage);
 }
 
-function createPagination(page) {
+function createPagination() {
     $("#pages").append(`<li class="page-item"><a class="page-link" href="#" onclick="prevPage()">Previous</a></li>`);
     if (previousPage != lastPage) {
         var difference = lastPage - previousPage;
@@ -51,24 +50,24 @@ function createPagination(page) {
             if (currentPage + 1 == lastPage || currentPage == lastPage ) {
                 $("#pages").append(`<li class="page-item"><a class="page-link" href="#"  onclick="goPage(${previousPage})">${previousPage}</a></li>`);
                 var html = `<li class="page-item"><a class="page-link" href="#" > ... </a></li>
-                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${page - 1})">${page - 1}</a></li>
-                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${page})">${page}</a></li>`;
+                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${currentPage- 1})">${currentPage- 1}</a></li>
+                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${currentPage})">${currentPage}</a></li>`;
                 $("#pages").append(html);
                 if(currentPage + 1 == lastPage ) $("#pages").append(`<li class="page-item"><a class="page-link" href="#"  onclick="goPage(${lastPage})">${lastPage}</a></li>`);
 
             } else if (currentPage - 1 == previousPage || currentPage == previousPage) {
                 if(currentPage - 1 == previousPage) $("#pages").append(`<li class="page-item"><a class="page-link" href="#"  onclick="goPage(${previousPage})">${previousPage}</a></li>`);
                 var html = `
-                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${page})">${page}</a></li>
-                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${page + 1})">${page + 1}</a></li>
+                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${currentPage})">${currentPage}</a></li>
+                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${currentPage+ 1})">${currentPage+ 1}</a></li>
                 <li class="page-item"><a class="page-link" href="#" > ... </a></li>`;
                 $("#pages").append(html);
                 $("#pages").append(`<li class="page-item"><a class="page-link" href="#"  onclick="goPage(${lastPage})">${lastPage}</a></li>`);
             } else {
                 var html = `<li class="page-item"><a class="page-link" href="#" > ... </a></li>
-                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${page - 1})">${page - 1}</a></li>
-                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${page})">${page}</a></li>
-                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${page + 1})">${page + 1}</a></li>
+                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${currentPage- 1})">${currentPage- 1}</a></li>
+                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${currentPage})">${currentPage}</a></li>
+                <li class="page-item"><a class="page-link" href="#"  onclick="goPage(${currentPage+ 1})">${currentPage+ 1}</a></li>
                 <li class="page-item"><a class="page-link" href="#" > ... </a></li>`;
                 
                 $("#pages").append(`<li class="page-item"><a class="page-link" href="#"  onclick="goPage(${previousPage})">${previousPage}</a></li>`);

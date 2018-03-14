@@ -1,6 +1,6 @@
 var apartamentsFilter = [];
 
-function check (query){
+function check(query) {
     apartamentsFilter = apartamentsAll.slice();
     return $(query).prop("checked");
 }
@@ -14,7 +14,7 @@ function checkBoxReviews() {
         choosePage();
     } else {
         apartamentsFilter = apartamentsAll.slice();
-        if(check("#defaultCheck2"))mostComments();
+        if (check("#defaultCheck2")) mostComments();
 
         cleanPage();
         currentPage = 0;
@@ -33,7 +33,7 @@ function checkBoxComments() {
         choosePage();
     } else {
         apartamentsFilter = apartamentsAll.slice();
-        if(check("#defaultCheck1"))bestReviews();
+        if (check("#defaultCheck1")) bestReviews();
 
         cleanPage();
         currentPage = 0;
@@ -45,7 +45,7 @@ function checkBoxComments() {
 }
 
 function bestReviews() {
-     apartamentsFilter = apartamentsFilter.sort((a, b) => {
+    apartamentsFilter = apartamentsFilter.sort((a, b) => {
         if (a["Reviews Core 4"] && b["Reviews Core 4"]) {
             return parseFloat(b["Reviews Core 4"].text) - parseFloat(a["Reviews Core 4"].text);
         }
@@ -73,13 +73,23 @@ function mostComments() {
 }
 
 function checkBoxTopReviews() {
-    apartamentsFilter = apartamentsAll.slice();
-    
-    bestReviews();
-    cleanPage();
-    currentPage = 0;
-    lastPage = 0;
-    apartamentsFilter = apartamentsFilter.slice(0,10);
-    showApartment(apartamentsFilter);
-    choosePage();
+    if (check("#defaultCheck3")) {
+        apartamentsFilter = apartamentsAll.slice();
+
+        bestReviews();
+        cleanPage();
+        currentPage = 0;
+        lastPage = 0;
+        apartamentsFilter = apartamentsFilter.slice(0, 10);
+        showApartment(apartamentsFilter);
+        choosePage();
+    }else{
+        cleanPage();
+        currentPage = 0;
+        lastPage = 69;
+        apartamentsFilter =  apartamentsAll.slice();
+        showApartment(apartamentsFilter);
+        choosePage();
+    }
+
 }
