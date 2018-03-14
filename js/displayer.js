@@ -1,18 +1,13 @@
 var currentPage = 0;
 var previousPage = 0;
 var lastPage = 0;
-var apartamentsAll = [];
 
 loadApartments().then(hotels => {
-    previousPage = 0;
-    lastPage = Math.trunc((hotels.length / 15) - 1);
-    apartamentsAll = hotels;
-    showApartment(apartamentsAll);
-    choosePage();
+    createPage(hotels, Math.trunc((hotels.length / numApartmentsPage) - 1));
 });
 
 function showApartment(hotels) {
-    apartamentsPage = hotels.slice(currentPage * 15, (currentPage + 1) * 15);
+    apartamentsPage = hotels.slice(currentPage * numApartmentsPage, (currentPage + 1) * numApartmentsPage);
     for (let i = 0; i < apartamentsPage.length; i++) {
         createApartmentHtml(apartamentsPage[i]);
     }
@@ -34,8 +29,10 @@ function createApartmentHtml(apartament) {
 `);
 }
 
-function choosePage() {
-    createPagination(currentPage);
+function createPage(hotels,numberLastPage) {
+    lastPage = numberLastPage;
+    showApartment(hotels);
+    createPagination();
 }
 
 function createPagination() {

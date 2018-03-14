@@ -3,18 +3,12 @@ function searchHotel() {
     loadApartments().then(hotels => {
         apartamentsAll = hotels.filter(hotels => hotels["Hotel Image"].alt.toLowerCase().includes(name.toLowerCase()));
         if (apartamentsAll.length != 0) {
-            lastPage = Math.trunc((apartamentsAll.length / 15) - 1);
-            cleanPage();
             currentPage = 0;
-            showApartment(apartamentsAll);
-            choosePage();
-        } else {
-           // lastPage = Math.trunc((hotels.length / 15) - 1);
-            lastPage = 0;
             cleanPage();
-           // apartamentsAll = hotels;
-            showApartment(apartamentsAll);
-            choosePage();
+            createPage(apartamentsAll,Math.trunc((apartamentsAll.length / numApartmentsPage) - 1));
+        } else {
+            cleanPage();
+            createPage(apartamentsAll,0);
         }
     })
 }
@@ -45,9 +39,6 @@ function goPage(idPage) {
 
 function saveActualPage() {
     cleanPage();
-
-    showApartment(apartamentsAll);
-    choosePage();
-
+    createPage(apartamentsAll,Math.trunc((apartamentsAll.length / numApartmentsPage) - 1));
 }
 
