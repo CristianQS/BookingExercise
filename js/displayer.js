@@ -75,8 +75,9 @@ function createPagination(page) {
                 $("#pages").append(html);
                 $("#pages").append(`<li class="page-item"><a class="page-link" href="#"  onclick="goPage(${lastPage})">${lastPage}</a></li>`);
             }
-
         }
+    }else{
+        $("#pages").append(`<li class="page-item"><a class="page-link" href="#"  onclick="goPage(${currentPage})">${currentPage}</a></li>`);
     }
     $("#pages").append(`<li class="page-item"><a class="page-link" href="#" onclick="nextPage()">Next</a></li>`);
 }
